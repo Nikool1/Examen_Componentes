@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ProductPage from "./components/ProductPage";
+import ContactForm from "./components/ContactForm";
+import AccountArea from "./components/AccountArea";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+  const [view, setView] = useState("home");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+
+      {/* TÍTULO */}
+      <h1 className="text-center my-4">Examen</h1>
+
+      {/* BOTONES */}
+      <div className="text-center mb-4">
+        <button 
+          className="btn btn-primary mx-2"
+          onClick={() => setView("productos")}
         >
-          Learn React
-        </a>
-      </header>
+          Ejercicio 1
+        </button>
+
+        <button 
+          className="btn btn-success mx-2"
+          onClick={() => setView("contacto")}
+        >
+          Ejercicio 2
+        </button>
+
+        <button 
+          className="btn btn-warning mx-2"
+          onClick={() => setView("cuenta")}
+        >
+          Ejercicio 3
+        </button>
+      </div>
+
+      {/* CONTENIDO */}
+      <div className="container">
+        {view === "productos" && <ProductPage />}
+        {view === "contacto" && <ContactForm />}
+        {view === "cuenta" && <AccountArea />}
+      </div>
+
     </div>
   );
 }
